@@ -1,0 +1,12 @@
+MATERIAL:COEFFICIENT
+chumbo:0.000027
+zinco:0.000026
+aluminio:0.000022
+prata:0.000019
+cobre:0.000017
+ouro:0.000015
+ferro:0.000012
+platina:0.0000009
+vidro-comum:0.000008
+tungstenio:0.0000043
+vidro-pyrex:0.000003
