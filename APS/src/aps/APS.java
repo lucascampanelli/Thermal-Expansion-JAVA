@@ -18,11 +18,10 @@ public class APS {
         // TODO code application logic here
         
         //Apenas para teste dos metodos da classe Materials
-        Materials rm = new Materials();
+        Materials rm = new Materials();        
+        String material = rm.delete("chumbo");
+        System.out.println(material);
         rm.show();
-        /*
-        String material = rm.create("acooo" , "0.00087");
-        System.out.println(material);*/
         //---------------------------
     }
     

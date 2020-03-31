@@ -16,6 +16,9 @@ import java.util.Scanner;
  * @author Gui
  */
 public class Materials {
+    //metodo que ira criar o material caso não tenha nenhum outro com esse mesmo 
+    //nome, se der tudo certo retornará mensagem de sucesso,senão retorna 
+    //uma mensagem de erro
     public String create(String name, String coefficient){
         String msg = "";
         try {
@@ -81,8 +84,39 @@ public class Materials {
         return msg;
     }
     
-    public void delete(){
-        //Falta fazer
+    public String delete(String name){
+        String msg="";
+        
+        try {
+            Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
+            
+            String fileCont = "";
+            
+            while(fileRead.hasNextLine()){
+                String line = fileRead.nextLine();
+                String[] split = line.split(":");
+                
+                if(split[0].equals(name)){
+                    msg = "Material apagado com sucesso!";
+                }else{
+                    fileCont += line + "\n";
+                }                
+            }
+            
+            FileWriter file = new FileWriter("Materials.txt");
+            PrintWriter fileWrite = new PrintWriter(file);
+            
+            fileWrite.write(fileCont);
+            
+            file.close();
+            
+            if (msg.equals("")){
+                msg = "Não existe nenhum material cadastrado com esse nome!";
+            }
+        }catch(Exception e){
+            msg = "Ocorreu um erro na hora de apagar!";
+        } 
+        return msg;
     }
     
     //Método para a atualização de um coeficiente caso já exista no txt e retornará
@@ -124,9 +158,8 @@ public class Materials {
                 msg = "Não existe nenhum material cadastrado com esse nome";
             }
         }catch(Exception e){
-            msg = "Ocorreu um erro na hora de escrever";
+            msg = "Ocorreu um erro na hora de alterar!";
         } 
-        
         return msg;
     }
     
