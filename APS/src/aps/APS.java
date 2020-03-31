@@ -19,8 +19,10 @@ public class APS {
         
         //Apenas para teste dos metodos da classe Materials
         Materials rm = new Materials();
-        String[] material = rm.read("ferro");
-        System.out.println(material[1]);
+        rm.show();
+        /*
+        String material = rm.create("acooo" , "0.00087");
+        System.out.println(material);*/
         //---------------------------
     }
     

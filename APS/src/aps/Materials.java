@@ -5,6 +5,7 @@
  */
 package aps;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * @author Gui
  */
 public class Materials {
-    public String write(String name, double coefficient){
+    public String create(String name, String coefficient){
         String msg = "";
         try {
             FileWriter file = new FileWriter("Materials.txt", true);
@@ -84,7 +85,64 @@ public class Materials {
         //Falta fazer
     }
     
-    public void update(){
-        //Falta fazer
+    //Método para a atualização de um coeficiente caso já exista no txt e retornará
+    //uma mensagem de erro, caso não ele retornará uma mensagem de erro 
+    public String update(String name, String coefficient){
+        String msg="";
+        
+        try {            
+            //Traz o txt para a memória do programa
+            Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
+            
+            String fileCont = "";
+            //Vai ficar procurando no arquivo até encontrar um registro igual
+            while(fileRead.hasNextLine()){
+                String line = fileRead.nextLine();
+                String[] split = line.split(":");
+                if(split[0].equals(name)){
+                    fileCont += split[0]+":"+coefficient + "\n";
+                    msg = "Coeficiente alterado com sucesso!";
+                }else{
+                    fileCont += line + "\n";
+                }                
+            }
+            try{
+                
+            }catch(Exception e){
+                
+            }
+            FileWriter file = new FileWriter("Materials.txt");
+            PrintWriter fileWrite = new PrintWriter(file);
+            
+            fileWrite.write(fileCont);
+            
+            file.close();
+            
+            //Se depois de procurar um material com o mesmo nome e não achar 
+            //ele escreverá no txt
+            if (msg.equals("")){
+                msg = "Não existe nenhum material cadastrado com esse nome";
+            }
+        }catch(Exception e){
+            msg = "Ocorreu um erro na hora de escrever";
+        } 
+        
+        return msg;
+    }
+    
+    //Metodo para exibir todos os materiais que existe no txt
+    public void show(){
+        try {
+            Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
+            
+            for(int i = 0; fileRead.hasNextLine(); i++){
+                if (i!=0){
+                    System.out.println(fileRead.nextLine());
+                } else{
+                    System.out.println("------Tabela de Materiais e Coeficientes-----");
+                    fileRead.nextLine();
+                }
+            }			
+        }catch(Exception e){}
     }
 }
