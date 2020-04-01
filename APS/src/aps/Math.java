@@ -13,7 +13,7 @@ import java.text.NumberFormat;
  * @author Gui
  */
 public class Math {
-    //Recebe um vetor com 4 valores, o primeiro comprimento inicial, coeficiente de 
+    //Recebe um vetor com 3 valores, o primeiro comprimento inicial, coeficiente de 
     //dilatação linear e a variação de temperatura 
     //retorna um vetor com dois valores, um é a variação e a outra é o comprimento final
     public String[] linearDilation(double[] values){

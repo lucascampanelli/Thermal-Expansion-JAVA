@@ -10,3 +10,4 @@ platina:0.0000009
 vidro-comum:0.000008
 tungstenio:0.0000043
 vidro-pyrex:0.000003
+peca:0.000005
