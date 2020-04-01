@@ -121,7 +121,7 @@ public class Materials {
     
     //Método para a atualização de um coeficiente caso já exista no txt e retornará
     //uma mensagem de erro, caso não ele retornará uma mensagem de erro 
-    public String update(String name, String coefficient){
+    public String update(String[] values){
         String msg="";
         
         try {            
@@ -133,8 +133,8 @@ public class Materials {
             while(fileRead.hasNextLine()){
                 String line = fileRead.nextLine();
                 String[] split = line.split(":");
-                if(split[0].equals(name)){
-                    fileCont += split[0]+":"+coefficient + "\n";
+                if(split[0].equals(values[0])){
+                    fileCont += split[0]+":"+values[1] + "\n";
                     msg = "Coeficiente alterado com sucesso!";
                 }else{
                     fileCont += line + "\n";
