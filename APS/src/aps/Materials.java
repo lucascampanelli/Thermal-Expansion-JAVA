@@ -19,7 +19,7 @@ public class Materials {
     //metodo que ira criar o material caso não tenha nenhum outro com esse mesmo 
     //nome, se der tudo certo retornará mensagem de sucesso,senão retorna 
     //uma mensagem de erro
-    public String create(String name, String coefficient){
+    public String create(String[] values){
         String msg = "";
         try {
             FileWriter file = new FileWriter("Materials.txt", true);
@@ -32,7 +32,7 @@ public class Materials {
             //igual
             while(fileRead.hasNextLine()){
                 String[] line = fileRead.nextLine().split(":");
-                if(line[0].equals(name)){
+                if(line[0].equals(values[0])){
                     msg = "Já existe um material com esse nome";
                 }
             }
@@ -40,7 +40,7 @@ public class Materials {
             //Se depois de procurar um material com o mesmo nome e não achar 
             //ele escreverá no txt
             if (msg.equals("")){
-                fileWrite.println(name + ":"+ coefficient);
+                fileWrite.println(values[0] + ":"+ values[1]);
                 msg = "Material Cadastrado com sucesso";
             }
 
