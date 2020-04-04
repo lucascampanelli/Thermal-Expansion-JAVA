@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aps;
 
 import java.io.File;
@@ -13,57 +9,58 @@ import java.util.Scanner;
 
 /**
  *
- * @author Gui
+ * @author Guilherme Rodrigues da Silva & Lucas Campanelli de Souza
  */
 public class Materials {
-    //metodo que ira criar o material caso não tenha nenhum outro com esse mesmo 
-    //nome, se der tudo certo retornará mensagem de sucesso,senão retorna 
-    //uma mensagem de erro
+    /*
+        This method will create a material if there isn't other with the same name, 
+        if it works will return a success message, 
+        otherwise will return a error message.
+    */
     public String create(String[] values){
         String msg = "";
         try {
             FileWriter file = new FileWriter("Materials.txt", true);
             PrintWriter fileWrite = new PrintWriter(file);
 
-            //Traz o txt para a memória do programa
+            //Brings the txt file to program memory
             Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
             
-            //Vai ficar procurando no arquivo até encontrar um registro
-            //igual
+            //Searches each line till find a material with the same name
             while(fileRead.hasNextLine()){
                 String[] line = fileRead.nextLine().split(":");
                 if(line[0].equals(values[0])){
-                    msg = "Já existe um material com esse nome";
+                    msg = "A material with the same name already exists.";
                 }
             }
             
-            //Se depois de procurar um material com o mesmo nome e não achar 
-            //ele escreverá no txt
+            //If there is no a material with the same name, writes a new material in the txt file
             if (msg.equals("")){
                 fileWrite.println(values[0] + ":"+ values[1]);
-                msg = "Material Cadastrado com sucesso";
+                msg = "Material successfully registered!";
             }
 
             file.close();
 			
         }catch(Exception e){
-            msg = "Ocorreu um erro na hora de escrever";
+            msg = "An error occurred to write a new material.";
         }
         
         return msg;
     }
-    
-    //Esse método ira retornar um vetor, o primeiro campo estará informando
-    //se ocorreu tudo corretamente, caso positivo terá um segundo campo com o
-    //valor do coeficiente do material
+
+    /*
+        This method returns an array with two lines,
+        the first one shows if everything works well,
+        if it was sucessful, the second one shows the material coefficient value
+    */
     public String[] read(String name){
         String[] msg = new String[2];
         try {
-            //Traz o txt para a memória do programa
+            //Brings the txt file to program memory.
             Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
             
-            //Vai ficar procurando no arquivo até encontrar um registro
-            //igual
+            //Searchs each line of the txt file a material with the same name.
             while(fileRead.hasNextLine()){
                 String[] line = fileRead.nextLine().split(":");
                 if(line[0].equals(name)){
@@ -72,8 +69,7 @@ public class Materials {
                 }
             }
             
-            //Se depois de procurar um material com o mesmo nome e não achar 
-            //ele escreverá no txt
+            //If there is no a material with the same name, writes in the txt file
             if (msg[0].equals("")){
                 msg[0] = "false";
             }
@@ -97,7 +93,7 @@ public class Materials {
                 String[] split = line.split(":");
                 
                 if(split[0].equals(name)){
-                    msg = "Material apagado com sucesso!";
+                    msg = "Material deletion successful!";
                 }else{
                     fileCont += line + "\n";
                 }                
@@ -111,31 +107,30 @@ public class Materials {
             file.close();
             
             if (msg.equals("")){
-                msg = "Não existe nenhum material cadastrado com esse nome!";
+                msg = "There is no material registered with this name.";
             }
         }catch(Exception e){
-            msg = "Ocorreu um erro na hora de apagar!";
+            msg = "An error occurred to delete this material.";
         } 
         return msg;
     }
     
-    //Método para a atualização de um coeficiente caso já exista no txt e retornará
-    //uma mensagem de erro, caso não ele retornará uma mensagem de erro 
+    //This method updates a material coefficient, if it already exists.
     public String update(String[] values){
         String msg="";
         
         try {            
-            //Traz o txt para a memória do programa
+            //Brings the txt file to program memory
             Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
             
             String fileCont = "";
-            //Vai ficar procurando no arquivo até encontrar um registro igual
+            //Searches in the text file till find a material with the same name
             while(fileRead.hasNextLine()){
                 String line = fileRead.nextLine();
                 String[] split = line.split(":");
                 if(split[0].equals(values[0])){
                     fileCont += split[0]+":"+values[1] + "\n";
-                    msg = "Coeficiente alterado com sucesso!";
+                    msg = "Coefficient deletion was succesful!";
                 }else{
                     fileCont += line + "\n";
                 }                
@@ -152,18 +147,17 @@ public class Materials {
             
             file.close();
             
-            //Se depois de procurar um material com o mesmo nome e não achar 
-            //ele escreverá no txt
+            //If there is no a material registered with the same name, writes in the txt file.
             if (msg.equals("")){
-                msg = "Não existe nenhum material cadastrado com esse nome";
+                msg = "There is no material registered with this name.";
             }
         }catch(Exception e){
-            msg = "Ocorreu um erro na hora de alterar!";
+            msg = "An error occurred to change.";
         } 
         return msg;
     }
     
-    //Metodo para exibir todos os materiais que existe no txt
+    //This Method shows all materials that exists in txt file
     public void show(){
         try {
             Scanner fileRead = new Scanner(new FileReader("Materials.txt"));
@@ -172,7 +166,7 @@ public class Materials {
                 if (i!=0){
                     System.out.println(fileRead.nextLine());
                 } else{
-                    System.out.println("------Tabela de Materiais e Coeficientes-----");
+                    System.out.println("------Table of materials and coefficients-----");
                     fileRead.nextLine();
                 }
             }			

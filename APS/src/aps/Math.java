@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aps;
 
 import java.text.DecimalFormat;
@@ -10,12 +6,18 @@ import java.text.NumberFormat;
 
 /**
  *
- * @author Gui
+ * @author Guilherme Rodrigues da Silva & Lucas Campanelli de Souza
  */
 public class Math {
-    //Recebe um vetor com 3 valores, o primeiro comprimento inicial, coeficiente de 
-    //dilatação linear e a variação de temperatura 
-    //retorna um vetor com dois valores, um é a variação e a outra é o comprimento final
+    /*
+        This method receives an array with three values,
+        the first one is the initial length,
+        the second one is the linear expansion and
+        the third one is the temperature variation.
+        Returns an array with two values,
+        the first one is the variation and
+        the second one is the final length.
+    */
     public String[] linearDilation(double[] values){
         double dilation = values[0] * values[1] * values[2];
         
